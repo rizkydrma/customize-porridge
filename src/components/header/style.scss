@@ -1,0 +1,32 @@
+nav {
+  padding: 1rem;
+  margin: 0;
+  min-height: 50px;
+  background-color: transparent;
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h5 {
+      text-transform: uppercase;
+      color: #873235;
+      font-size: 1.75rem;
+
+      &.brand-logo {
+        font-weight: bold;
+
+        span {
+          font-weight: 300;
+        }
+      }
+    }
+
+    @media (max-width: 468px) {
+      h5 {
+        font-size: 1rem;
+      }
+    }
+  }
+}
