@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import './style.scss';
 
@@ -6,18 +6,21 @@ import BlobMaker from '../../assets/blobmaker.svg';
 import Person from '../../assets/person.png';
 
 export default function Modal(props) {
-  const closeOnEscapeKeyDown = (e) => {
-    if ((e.charCode || e.keyCode) === 27) {
-      props.onClose();
-    }
-  };
+  const closeOnEscapeKeyDown = useCallback(
+    (e) => {
+      if ((e.charCode || e.keyCode) === 27) {
+        props.onClose();
+      }
+    },
+    [props],
+  );
 
   useEffect(() => {
     document.body.addEventListener('keydown', closeOnEscapeKeyDown);
     return function cleanup() {
       document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
     };
-  }, []);
+  }, [closeOnEscapeKeyDown]);
 
   return (
     <CSSTransition
